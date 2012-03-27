@@ -1,19 +1,13 @@
 #!/usr/bin/python
 
 '''
-#!/usr/bin/python
-
-'''
 Created on Mar 27, 2012
 
 @author: michaelmcgovern
 '''
-'''
-    classdocs
-    '''
+
 import MySQLdb
 import time
-import sys
 import cgi
 import cgitb
 import ConfigParser
