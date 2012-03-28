@@ -60,10 +60,10 @@ class ChirpData:
 
     def getOlderChirps(self,maxNum,query='',maxDate=time.time()):                                    # main method that populates login.py with chirps and queries  
         query = '%'+query+'%'
-        query = self.Clean(query)
-        sql_statement = "SELECT C_String, UNIX_TIMESTAMP(C_Time) FROM cHirps WHERE UNIX_TIMESTAMP(C_Time)<=\'%i\' AND C_String LIKE \'%s\' ORDER BY C_Time DESC LIMIT 0,%i;" % (maxDate,query,maxNum)
+        #query = self.Clean(query)
+        #sql_statement = "SELECT C_String, UNIX_TIMESTAMP(C_Time) FROM cHirps WHERE UNIX_TIMESTAMP(C_Time)<=\'%i\' AND C_String LIKE \'%s\' ORDER BY C_Time DESC LIMIT 0,%i;" % (maxDate,query,maxNum)
         self.CreateConnection()
-        rawdata = self.ExecCur(sql_statement)
+        rawdata = self.ExecCur("SELECT C_String, UNIX_TIMESTAMP(C_Time) FROM cHirps WHERE UNIX_TIMESTAMP(C_Time)<=%i AND C_String LIKE %s ORDER BY C_Time DESC LIMIT 0,%i;" % (maxDate,query,maxNum))
         if not rawdata:                                                                            #if query not found exception
             return ['Nothing like \"%s\" in here' % (query.replace('%',''))] 
         minmaxTime = self.getTime(rawdata)
