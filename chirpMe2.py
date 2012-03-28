@@ -52,10 +52,10 @@ class ChirpData:
         return chirp.replace('"','""').replace("'","''")
 
     def chirpAdd(self,chirp):
-        cleanChirp = self.Clean(chirp)
-        sql_statement = "INSERT INTO cHirps(C_String,C_Time) VALUES(\'%s\',TIMESTAMP(now()));" % (cleanChirp)
+        #cleanChirp = self.Clean(chirp)
+        #sql_statement = "INSERT INTO cHirps(C_String,C_Time) VALUES(\'%s\',TIMESTAMP(now()));" % (cleanChirp)
         self.CreateConnection()
-        self.ExecCur(sql_statement)
+        self.ExecCur("INSERT INTO cHirps(C_String,C_Time) VALUES(%s,TIMESTAMP(now()))",(chirp))
         self.DestroyConnection()
 
     def getOlderChirps(self,maxNum,query='',maxDate=time.time()):                                    # main method that populates login.py with chirps and queries  
