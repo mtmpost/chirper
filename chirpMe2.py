@@ -75,9 +75,9 @@ class ChirpData:
                                                                                                   #I can get a starttime varible
     def getNewerChirps(self,maxNum,query,maxDate=time.time()):
         query = '%'+query+'%'
-        sql_statement = "SELECT C_String, UNIX_TIMESTAMP(C_Time) FROM cHirps WHERE UNIX_TIMESTAMP(C_Time)>(\'%i\'-3000) AND C_String LIKE \'%s\' ORDER BY C_Time DESC LIMIT 0,%i;" % (maxDate,query,maxNum)
+        #sql_statement = "SELECT C_String, UNIX_TIMESTAMP(C_Time) FROM cHirps WHERE UNIX_TIMESTAMP(C_Time)>(\'%i\'-3000) AND C_String LIKE \'%s\' ORDER BY C_Time DESC LIMIT 0,%i;" % (maxDate,query,maxNum)
         self.CreateConnection()
-        rawdata = self.ExecCur(sql_statement)
+        rawdata = self.ExecCur("SELECT C_String, UNIX_TIMESTAMP(C_Time) FROM cHirps WHERE UNIX_TIMESTAMP(C_Time)>(%i-3000) AND C_String LIKE %s ORDER BY C_Time DESC LIMIT 0,%i;", (maxDate,query,maxNum))
         if not rawdata:                                                                              #if query not found exception
             return ['Nothing like \"%s\" in here' % (query.replace('%',''))]
         minmaxTime = self.getTime(rawdata)
