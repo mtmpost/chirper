@@ -32,10 +32,10 @@ prequery = query
 
 if chirp:
     newChirp = ChirpData()                                            #create instance of class
-        newChirp.chirpAdd(chirp)
+    newChirp.chirpAdd(chirp)
     print ("Status: 303 See Other")
-        print ("Location: %s" % redirectURL)                        # takes care of refresh problem
-        print ('')                                                  # blank line, end of headers
+    print ("Location: %s" % redirectURL)                        # takes care of refresh problem
+    print ('')                                                  # blank line, end of headers
 else:
     print ("Content-Type: text/html; charset=utf-8\n")                           # HTML is following
     print ('''<!DOCTYPE HTML>
@@ -87,38 +87,14 @@ Chirp: <input type="text" name="chirp" size="30"><br><br>
 ''')
 
 if not query:
-    query = ''
     displayChirps = ChirpData()
-    results = displayChirps.getOlderChirps(20,'%')
+    results = displayChirps.getOlderChirps(20,'')
     display(results)
     print '<p>from in not query</p>'
 else:
     queryChirps = ChirpData()
     results = queryChirps.getOlderChirps(200,query)
     display(results)
-    queryChirps.getOlderChirps(20,'%')
-    print '<p>z',prequery,'</p>'
-
-
-
-    
-    
-    #    #newChirp = form.getfirst('chirp', 'empty')
-    #    #x = ChirpData()                                            #create instance of class
-    #    #x.chirpAdd(chirp)                                          #add new chirp to db
-    #    #results = x.getOlderChirps(20,'%')                       #get last 20 chirps to display
-    #    print "<div>Here's your chirp<br/><br/></div>"
-    #    for line in results:
-    #       line = cgi.escape(line)
-    #        print '<div><p class="chirps">',line,results.index(line),'</p></div>'
-    #elif query:
-    #    y = ChirpData()
-    #    results = y.getOlderChirps(200,query)
-    #    display(results)
-    #    query = ''
-    #else:
-    #    print "<p>all done</p>"
-    
-    
+    queryChirps.getOlderChirps(20,'%')    
     print '</body>'
     print '</html>'
