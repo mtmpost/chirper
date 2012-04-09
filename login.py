@@ -2,8 +2,8 @@
 
 from chirpMe2 import ChirpData
 import cgi
-import cgitb
-cgitb.enable(display=1, logdir="/home4/mcgover1/tmp/pythonlogs")
+#import cgitb
+#cgitb.enable(display=1, logdir="/home4/mcgover1/tmp/pythonlogs")
 
 form = cgi.FieldStorage()    
 #usr = ""
@@ -88,7 +88,7 @@ Chirp: <input type="text" name="chirp" size="30"><br><br>
 
 if not query:
     displayChirps = ChirpData()
-    results = displayChirps.getOlderChirps(20,'')
+    results = displayChirps.getOlderChirps(21)
     display(results)
     print '<p>from in not query</p>'
 else:
