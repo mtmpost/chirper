@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from chirpMe2 import ChirpData
+from chirpme2 import ChirpData
 import cgi
 #import cgitb
 #cgitb.enable(display=1, logdir="/home4/mcgover1/tmp/pythonlogs")
@@ -32,7 +32,7 @@ prequery = query
 
 if chirp:
     newChirp = ChirpData()                                            #create instance of class
-    newChirp.chirpAdd(chirp)
+    newChirp.chirp_add(chirp)
     print ("Status: 303 See Other")
     print ("Location: %s" % redirectURL)                        # takes care of refresh problem
     print ('')                                                  # blank line, end of headers
@@ -88,13 +88,13 @@ Chirp: <input type="text" name="chirp" size="30"><br><br>
 
 if not query:
     displayChirps = ChirpData()
-    results = displayChirps.getOlderChirps(21)
+    results = displayChirps.get_older_chirps(21)
     display(results)
     print '<p>from in not query</p>'
 else:
     queryChirps = ChirpData()
-    results = queryChirps.getOlderChirps(200,query)
+    results = queryChirps.get_older_chirps(200,query)
     display(results)
-    queryChirps.getOlderChirps(20,'%')    
+    queryChirps.get_older_chirps(20,'%')    
     print '</body>'
     print '</html>'
