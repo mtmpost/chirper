@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from chirpme2 import ChirpData
+from chirpmod import ChirpData
 import cgi
 #import cgitb
 #cgitb.enable(display=1, logdir="/home4/mcgover1/tmp/pythonlogs")
